@@ -136,52 +136,43 @@
             <property name="title">
              <string>Actions</string>
             </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_7">
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout_2">
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_4">
-                 <item>
-                  <widget class="QPushButton" name="pushButton">
-                   <property name="text">
-                    <string>Analyze This</string>
-                   </property>
-                   <property name="default">
-                    <bool>true</bool>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_3">
-                   <property name="text">
-                    <string>Analyze All</string>
-                   </property>
-                   <property name="default">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-               <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_5">
-                 <item>
-                  <widget class="QPushButton" name="pushButton_2">
-                   <property name="text">
-                    <string>Reset This</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item>
-                  <widget class="QPushButton" name="pushButton_4">
-                   <property name="text">
-                    <string>Reset All</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </item>
-              </layout>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0" colspan="2">
+              <widget class="QPushButton" name="pushButton">
+               <property name="text">
+                <string>Analyze This</string>
+               </property>
+               <property name="shortcut">
+                <string>Return</string>
+               </property>
+               <property name="default">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QPushButton" name="pushButton_3">
+               <property name="text">
+                <string>Analyze All</string>
+               </property>
+               <property name="default">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QPushButton" name="pushButton_2">
+               <property name="text">
+                <string>Reset This</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1" colspan="2">
+              <widget class="QPushButton" name="pushButton_4">
+               <property name="text">
+                <string>Reset All</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -193,9 +184,12 @@
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_9">
         <item>
-         <widget class="QPushButton" name="pushButton_5">
+         <widget class="QPushButton" name="previousButton">
           <property name="text">
            <string>⬅️</string>
+          </property>
+          <property name="shortcut">
+           <string>Left</string>
           </property>
          </widget>
         </item>
@@ -205,7 +199,7 @@
            <number>0</number>
           </property>
           <item>
-           <widget class="QLabel" name="pageIndicator">
+           <widget class="QLabel" name="pageIndicatorLabel">
             <property name="text">
              <string>10 of 43</string>
             </property>
@@ -224,9 +218,12 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_6">
+         <widget class="QPushButton" name="nextButton">
           <property name="text">
            <string>➡️</string>
+          </property>
+          <property name="shortcut">
+           <string>Right</string>
           </property>
          </widget>
         </item>
