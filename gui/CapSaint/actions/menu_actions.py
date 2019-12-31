@@ -44,6 +44,11 @@ def onVerboseTapped(checked):
     logging.info("Tapped Advanced/Verbose, state = %d" % checked)
     varargs.varargs.verboseMode = checked
 
+    if checked:
+        logging.getLogger().setLevel(logging.DEBUG)
+    else:
+        logging.getLogger().setLevel(logging.ERROR)
+
 #############
 # Info Menu #
 #############

@@ -16,7 +16,7 @@ import actions.menu_actions
 
 from PyQt5 import QtWidgets
 
-DEBUG = True
+DEBUG = False
 
 global_ui = None
 
