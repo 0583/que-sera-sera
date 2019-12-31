@@ -87,6 +87,8 @@ class CapSaintGui(QtWidgets.QMainWindow):
             global_ui.pageProgressBar.setValue(1)
             global_ui.pageProgressBar.setEnabled(False)
 
+            global_ui.actionExport.setEnabled(False)
+
             global_ui.zoomIndicator.setEnabled(False)
 
             global_ui.previousButton.setEnabled(False)
@@ -101,6 +103,7 @@ class CapSaintGui(QtWidgets.QMainWindow):
             logging.info("trivial call of refreshDisplay")
             return
 
+        global_ui.actionExport.setEnabled(True)
         global_ui.zoomIndicator.setEnabled(True)
         global_ui.analyzeAllButton.setEnabled(True)
         global_ui.analyzeThisButton.setEnabled(True)
