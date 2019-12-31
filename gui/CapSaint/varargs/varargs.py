@@ -1,3 +1,5 @@
-operationType = 0
-kernelSize = 3
-sigmaValue = 50
+currentImageIndex = 0
+useColorToDistinguish = True
+sensitivityLevel = 0
+verboseMode = False
+zoomRatio = 1.0

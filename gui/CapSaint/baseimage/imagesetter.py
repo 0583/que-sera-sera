@@ -23,8 +23,13 @@ def getImageAt(id):
 def appendImage(obj):
     global __global_imgs
 
-    print("called setImageObject, will add %s to __global_imgs" % obj)
+    logging.info("called setImageObject, will add %s to __global_imgs" % obj)
     __global_imgs.append(obj)
+
+def removeImageAt(id):
+    global __global_imgs
+
+    __global_imgs.pop(id)
 
 def clearImageObject():
     global __global_imgs

@@ -14,7 +14,7 @@
    <string>CapSaint</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_10">
+   <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
@@ -26,10 +26,35 @@
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout">
            <item>
-            <widget class="QGraphicsView" name="graphicsView">
-             <property name="sizeAdjustPolicy">
-              <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+            <widget class="QScrollArea" name="scrollArea">
+             <property name="widgetResizable">
+              <bool>true</bool>
              </property>
+             <widget class="QWidget" name="scrollAreaWidgetContents">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>318</width>
+                <height>313</height>
+               </rect>
+              </property>
+              <layout class="QHBoxLayout" name="horizontalLayout_5">
+               <item>
+                <widget class="QLabel" name="graphicsView">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
             </widget>
            </item>
           </layout>
@@ -163,14 +188,14 @@
              <item row="1" column="0">
               <widget class="QPushButton" name="resetThisButton">
                <property name="text">
-                <string>Reset This</string>
+                <string>Remove This</string>
                </property>
               </widget>
              </item>
              <item row="1" column="1" colspan="2">
               <widget class="QPushButton" name="resetAllButton">
                <property name="text">
-                <string>Reset All</string>
+                <string>Remove All</string>
                </property>
               </widget>
              </item>
@@ -210,6 +235,9 @@
           </item>
           <item>
            <widget class="QProgressBar" name="pageProgressBar">
+            <property name="minimum">
+             <number>1</number>
+            </property>
             <property name="value">
              <number>24</number>
             </property>

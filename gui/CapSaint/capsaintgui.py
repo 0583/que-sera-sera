@@ -3,7 +3,10 @@ import sys
 import logging
 import mainwindow
 
-import utils
+import utils.prompt
+import utils.widget_helper
+import utils.qpixel_converter
+import varargs.varargs
 import baseimage
 
 # import action handlers
@@ -29,6 +32,8 @@ class CapSaintGui(QtWidgets.QMainWindow):
         ui.setupUi(MainWindow)
 
         self.bind_actions()
+
+        self.refreshDisplay()
 
         utils.widget_helper.global_ce = self
 
@@ -74,6 +79,52 @@ class CapSaintGui(QtWidgets.QMainWindow):
     def refreshDisplay(self):
         global global_ui
         logging.info("Recalled refreshDisplay")
+        image_cnt = baseimage.imagesetter.getCount()
+        if image_cnt == 0:
+            varargs.varargs.currentImageIndex = 0
+            global_ui.pageIndicatorLabel.setText("No Image")
+            global_ui.pageProgressBar.setMaximum(1)
+            global_ui.pageProgressBar.setValue(1)
+            global_ui.pageProgressBar.setEnabled(False)
+
+            global_ui.previousButton.setEnabled(False)
+            global_ui.nextButton.setEnabled(False)
+
+            global_ui.analyzeAllButton.setEnabled(False)
+            global_ui.analyzeThisButton.setEnabled(False)
+            global_ui.resetAllButton.setEnabled(False)
+            global_ui.resetThisButton.setEnabled(False)
+            
+            global_ui.graphicsView.clear()
+            logging.info("trivial call of refreshDisplay")
+            return
+
+        global_ui.analyzeAllButton.setEnabled(True)
+        global_ui.analyzeThisButton.setEnabled(True)
+        global_ui.resetAllButton.setEnabled(True)
+        global_ui.resetThisButton.setEnabled(True)
+        global_ui.pageProgressBar.setEnabled(True)
+        
+        if varargs.varargs.currentImageIndex < 1 or varargs.varargs.currentImageIndex > image_cnt:
+            varargs.varargs.currentImageIndex = 1
+        
+        global_ui.pageIndicatorLabel.setText("%d of %d" % (varargs.varargs.currentImageIndex, image_cnt))
+        global_ui.pageProgressBar.setMaximum(image_cnt)
+        global_ui.pageProgressBar.setValue(varargs.varargs.currentImageIndex)
+
+        if varargs.varargs.currentImageIndex == 1:
+            global_ui.previousButton.setEnabled(False)
+        else:
+            global_ui.previousButton.setEnabled(True)
+
+        if varargs.varargs.currentImageIndex == image_cnt:
+            global_ui.nextButton.setEnabled(False)
+        else:
+            global_ui.nextButton.setEnabled(True)
+
+        logging.info("preparing to refresh graphics view display")
+        global_ui.graphicsView.setPixmap(utils.qpixel_converter.convertToQPixel(baseimage.imagesetter.getImageAt(varargs.varargs.currentImageIndex - 1)))
+        
 
 if __name__ == "__main__":
     if DEBUG:
