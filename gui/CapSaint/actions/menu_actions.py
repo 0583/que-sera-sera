@@ -5,6 +5,7 @@ from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot, QTimer
 
 import baseio.input
 import baseio.output
+import varargs.varargs
 
 import logging
 
@@ -31,6 +32,7 @@ def onMenuExportTapped(self):
 @pyqtSlot()
 def onMenuQuitTapped(self):
     logging.info("Tapped File/Quit")
+    exit(0)
 
 
 #################
@@ -40,6 +42,7 @@ def onMenuQuitTapped(self):
 @pyqtSlot()
 def onVerboseTapped(checked):
     logging.info("Tapped Advanced/Verbose, state = %d" % checked)
+    varargs.varargs.verboseMode = checked
 
 #############
 # Info Menu #
