@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.11.0, 2019-12-31T14:29:55. -->
+<!-- Written by QtCreator 4.11.0, 2019-12-31T15:31:13. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -75,7 +75,7 @@
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProcessStep.Arguments"></value>
       <value type="QString" key="ProjectExplorer.ProcessStep.Command">/Volumes/Macintosh HD (Sierra)/Users/yue/Documents/GitHub/que-sera-sera/gui/build_ui.sh</value>
-      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">/Volumes/Macintosh HD (Sierra)/Users/yue/Documents/GitHub/que-sera-sera/gui/CapSaint</value>
+      <value type="QString" key="ProjectExplorer.ProcessStep.WorkingDirectory">/Volumes/Macintosh HD (Sierra)/Users/yue/Documents/GitHub/que-sera-sera/gui</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.ProcessStep</value>
      </valuemap>
      <value type="int" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
@@ -236,6 +236,7 @@
     <value type="bool" key="RunConfiguration.UseMultiProcess">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseTerminal">true</value>
     <value type="QString" key="RunConfiguration.WorkingDirectory"></value>
     <value type="QString" key="RunConfiguration.WorkingDirectory.default">/Volumes/Macintosh HD (Sierra)/Users/yue/Documents/GitHub/que-sera-sera/gui/CapSaint</value>
    </valuemap>

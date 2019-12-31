@@ -5,13 +5,13 @@ from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot, QTimer
 import logging
 
 @pyqtSlot()
-def onZoomRatioChanged(self):
-    logging.info("Tapped Image Zoom")
+def onZoomRatioChanged(value):
+    logging.info("Tapped Image Zoom, current value: %.1f" % value)
 
 @pyqtSlot()
-def onColorDistinguishChecked(self):
-    logging.info("Tapped Color Distinguish Checker")
+def onColorDistinguishChecked(checked):
+    logging.info("Tapped Color Distinguish Checker. value: %d" % checked)
 
 @pyqtSlot()
-def onSensitivityChanged(self):
-    logging.info("Tapped Sensitivity Selector")
+def onSensitivityChanged(level):
+    logging.info("Tapped Sensitivity Selector, level: %d" % level)

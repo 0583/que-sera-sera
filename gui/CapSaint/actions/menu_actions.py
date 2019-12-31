@@ -26,8 +26,8 @@ def onMenuQuitTapped(self):
 #################
 
 @pyqtSlot()
-def onVerboseTapped(self):
-    logging.info("Tapped Advanced/Verbose")
+def onVerboseTapped(checked):
+    logging.info("Tapped Advanced/Verbose, state = %d" % checked)
 
 #############
 # Info Menu #

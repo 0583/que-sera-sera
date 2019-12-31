@@ -60,16 +60,16 @@
                     <number>1</number>
                    </property>
                    <property name="minimum">
-                    <double>0.000000000000000</double>
+                    <double>0.100000000000000</double>
                    </property>
                    <property name="maximum">
-                    <double>100.000000000000000</double>
+                    <double>10.000000000000000</double>
                    </property>
                    <property name="singleStep">
                     <double>0.100000000000000</double>
                    </property>
                    <property name="stepType">
-                    <enum>QAbstractSpinBox::AdaptiveDecimalStepType</enum>
+                    <enum>QAbstractSpinBox::DefaultStepType</enum>
                    </property>
                    <property name="value">
                     <double>1.000000000000000</double>
@@ -79,7 +79,7 @@
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkBox">
+                <widget class="QCheckBox" name="colorDistCheckBox">
                  <property name="text">
                   <string>Use Color to Distinguish</string>
                  </property>
@@ -95,7 +95,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="comboBox">
+                  <widget class="QComboBox" name="sensitivitySelector">
                    <item>
                     <property name="text">
                      <string>Low</string>
@@ -138,7 +138,7 @@
             </property>
             <layout class="QGridLayout" name="gridLayout">
              <item row="0" column="0" colspan="2">
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="analyzeThisButton">
                <property name="text">
                 <string>Analyze This</string>
                </property>
@@ -151,7 +151,7 @@
               </widget>
              </item>
              <item row="0" column="2">
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QPushButton" name="analyzeAllButton">
                <property name="text">
                 <string>Analyze All</string>
                </property>
@@ -161,14 +161,14 @@
               </widget>
              </item>
              <item row="1" column="0">
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="resetThisButton">
                <property name="text">
                 <string>Reset This</string>
                </property>
               </widget>
              </item>
              <item row="1" column="1" colspan="2">
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="resetAllButton">
                <property name="text">
                 <string>Reset All</string>
                </property>
@@ -242,31 +242,30 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="FileMenu">
     <property name="title">
      <string>File</string>
     </property>
     <addaction name="actionImport"/>
     <addaction name="actionExport"/>
-    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
-   <widget class="QMenu" name="menu_2">
+   <widget class="QMenu" name="InfoMenu">
     <property name="title">
      <string>Info</string>
     </property>
     <addaction name="actionManual"/>
     <addaction name="actionAbout"/>
    </widget>
-   <widget class="QMenu" name="menu_3">
+   <widget class="QMenu" name="AdvancedMenu">
     <property name="title">
      <string>Advanced</string>
     </property>
     <addaction name="actionVerbose"/>
    </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_3"/>
-   <addaction name="menu_2"/>
+   <addaction name="FileMenu"/>
+   <addaction name="AdvancedMenu"/>
+   <addaction name="InfoMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionManual">
@@ -275,6 +274,9 @@
    </property>
   </action>
   <action name="actionAbout">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
