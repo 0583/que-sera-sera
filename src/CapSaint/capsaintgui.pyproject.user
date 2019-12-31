@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.11.0, 2019-12-31T18:09:05. -->
+<!-- Written by QtCreator 4.11.0, 2019-12-31T18:09:38. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -151,7 +151,7 @@
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">capsaintgui2</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration./Volumes/Macintosh HD (Sierra)/Users/yue/Documents/GitHub/que-sera-sera/src/CapSaint/capsaintgui.py</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">/Volumes/Macintosh HD (Sierra)/Users/yue/Documents/GitHub/que-sera-sera/src/CapSaint/capsaintgui.py</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{8e321da3-a1d0-4fa8-a9ba-bce28a1ca2bd}</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Interpreter">{8a99a898-c615-4a5f-bf0b-e05c3eb4baa4}</value>
     <value type="QString" key="PythonEditor.RunConfiguation.Script">/Volumes/Macintosh HD (Sierra)/Users/yue/Documents/GitHub/que-sera-sera/src/CapSaint/capsaintgui.py</value>
     <value type="QString" key="RunConfiguration.Arguments"></value>
     <value type="bool" key="RunConfiguration.Arguments.multi">false</value>
