@@ -18,6 +18,7 @@ def cut(image):
     cnts, _b = x
     c = sorted(cnts, key=cv2.contourArea, reverse=True)
     l = []
+    c = []
     for k in range(len(c)):
         if cv2.contourArea(c[k])<10000:break
         rect = cv2.minAreaRect(c[k])
@@ -32,5 +33,6 @@ def cut(image):
         width = x2 - x1
         cropImg = image[y1:y1+hight, x1:x1+width].copy()
         l.append(cropImg)
+        c.append([int(y1+hight/2),int(x1+width/2)])
         cv2.imwrite(str(k)+".jpg",cropImg)
-    return l
+    return (l,c)
