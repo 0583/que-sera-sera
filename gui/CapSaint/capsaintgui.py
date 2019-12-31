@@ -3,6 +3,9 @@ import sys
 import logging
 import mainwindow
 
+import utils
+import baseimage
+
 # import action handlers
 import actions.button_actions
 import actions.component_actions
@@ -66,6 +69,14 @@ class CapSaintGui(QtWidgets.QMainWindow):
         # initialize distinguish by color = on
         global_ui.colorDistCheckBox.setChecked(True)
 
+    def refreshDisplay(self):
+        global global_ui
+        if baseimage.imagesetter.isOk():
+            print("preparing to refresh graphics view display")
+            global_ui.graphicsView.setPixmap(utils.qpixel_converter.convertToQPixel(baseimage.imagesetter.getImageObject()))
+        else:
+            print("trivial call of refreshDisplay")
+            global_ui.graphicsView.clear()
 
 if __name__ == "__main__":
     if DEBUG:
