@@ -85,7 +85,7 @@ class CapSaintGui(QtWidgets.QMainWindow):
             global_ui.pageIndicatorLabel.setText("No Image")
             global_ui.pageProgressBar.setMaximum(1)
             global_ui.pageProgressBar.setValue(1)
-            global_ui.pageProgressBar.setEnabled(False)
+            global_ui.pageProgressBar.setHidden(True)
 
             global_ui.actionExport.setEnabled(False)
 
@@ -109,7 +109,7 @@ class CapSaintGui(QtWidgets.QMainWindow):
         global_ui.analyzeThisButton.setEnabled(True)
         global_ui.resetAllButton.setEnabled(True)
         global_ui.resetThisButton.setEnabled(True)
-        global_ui.pageProgressBar.setEnabled(True)
+        global_ui.pageProgressBar.setHidden(False)
         
         if varargs.varargs.currentImageIndex < 1 or varargs.varargs.currentImageIndex > image_cnt:
             varargs.varargs.currentImageIndex = 1
