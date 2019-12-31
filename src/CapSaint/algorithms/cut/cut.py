@@ -18,7 +18,7 @@ def cut(image):
     cnts, _b = x
     c = sorted(cnts, key=cv2.contourArea, reverse=True)
     l = []
-    for k in range(40):
+    for k in range(len(c)):
         if cv2.contourArea(c[k])<10000:break
         rect = cv2.minAreaRect(c[k])
         box = np.int0(cv2.boxPoints(rect))
@@ -32,9 +32,5 @@ def cut(image):
         width = x2 - x1
         cropImg = image[y1:y1+hight, x1:x1+width].copy()
         l.append(cropImg)
-        #cv2.drawContours(image, [box], -1, (0, 255, 0), 3)
-       # cv2.imshow("enhanced",cropImg)
         cv2.imwrite(str(k)+".jpg",cropImg)
-       # cv2.waitKey(0)
-
-    cv2.imwrite("result.jpg",image)
+    return l
