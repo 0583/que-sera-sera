@@ -1,35 +1,33 @@
-__global_img = None
+import logging
 
-def isOk():
-    global __global_img
+__global_imgs = []
 
-    if __global_img == None:
-        return False
-    return True
+def isEmpty():
+    global __global_imgs
+    return len(__global_imgs) == 0
+    
+def getCount():
+    global __global_imgs
+    return len(__global_imgs)
 
-def displayIt():
-    global __global_img
+def getImageAt(id):
+    global __global_imgs
+    assert(type(id) == int)
 
-    print("called displayIt.")
-    if isOk():
-        print("it's ok, so we're going to show %s" % __global_img)
-        __global_img.show()
-    print("not ok, not going to show anything")
+    if id < 0 or id >= getCount():
+        logging.error("failed to get image id %d" % id)
+        return
 
-def getImageObject():
-    global __global_img
+    return __global_imgs[id]
 
-    print("called getImageObject, will return %s" % __global_img)
-    return __global_img
+def appendImage(obj):
+    global __global_imgs
 
-def setImageObject(obj):
-    global __global_img
-
-    print("called setImageObject, will set __global_img to %s" % obj)
-    __global_img = obj
+    print("called setImageObject, will add %s to __global_imgs" % obj)
+    __global_imgs.append(obj)
 
 def clearImageObject():
-    global __global_img
-    
+    global __global_imgs
+
     print("called clearImageObject.")
-    __global_img = None
+    __global_imgs.clear()

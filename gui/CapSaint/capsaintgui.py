@@ -30,6 +30,8 @@ class CapSaintGui(QtWidgets.QMainWindow):
 
         self.bind_actions()
 
+        utils.widget_helper.global_ce = self
+
         MainWindow.show()
         sys.exit(app.exec_())
 
@@ -71,12 +73,7 @@ class CapSaintGui(QtWidgets.QMainWindow):
 
     def refreshDisplay(self):
         global global_ui
-        if baseimage.imagesetter.isOk():
-            print("preparing to refresh graphics view display")
-            global_ui.graphicsView.setPixmap(utils.qpixel_converter.convertToQPixel(baseimage.imagesetter.getImageObject()))
-        else:
-            print("trivial call of refreshDisplay")
-            global_ui.graphicsView.clear()
+        logging.info("Recalled refreshDisplay")
 
 if __name__ == "__main__":
     if DEBUG:
