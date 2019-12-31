@@ -15,6 +15,6 @@ root
 │       containing JPEG formatted files as scene<id>.jpg
 │       our target images to be detected.
 └───src
-        containing GUI related code maintained by @yuetsin.
+        containing actual codes executing the recognizing procedure.
         written in Python based on PyQt5.
 ```
