@@ -22,7 +22,7 @@ def onMenuImportTapped(self):
         if fileName[0] == '':
             return
         for singleName in fileName[0]:
-            print(singleName)
+            logging.info("going to open file %s" % singleName)
             baseio.input.openFile(singleName)
 
 @pyqtSlot()
