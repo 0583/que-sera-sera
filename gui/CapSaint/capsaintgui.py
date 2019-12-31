@@ -87,6 +87,8 @@ class CapSaintGui(QtWidgets.QMainWindow):
             global_ui.pageProgressBar.setValue(1)
             global_ui.pageProgressBar.setEnabled(False)
 
+            global_ui.zoomIndicator.setEnabled(False)
+
             global_ui.previousButton.setEnabled(False)
             global_ui.nextButton.setEnabled(False)
 
@@ -99,6 +101,7 @@ class CapSaintGui(QtWidgets.QMainWindow):
             logging.info("trivial call of refreshDisplay")
             return
 
+        global_ui.zoomIndicator.setEnabled(True)
         global_ui.analyzeAllButton.setEnabled(True)
         global_ui.analyzeThisButton.setEnabled(True)
         global_ui.resetAllButton.setEnabled(True)
@@ -123,7 +126,7 @@ class CapSaintGui(QtWidgets.QMainWindow):
             global_ui.nextButton.setEnabled(True)
 
         logging.info("preparing to refresh graphics view display")
-        global_ui.graphicsView.setPixmap(utils.qpixel_converter.convertToQPixel(baseimage.imagesetter.getImageAt(varargs.varargs.currentImageIndex - 1)))
+        global_ui.graphicsView.setPixmap(utils.qpixel_converter.convertToQPixel(baseimage.imagesetter.getImageAt(varargs.varargs.currentImageIndex - 1), global_ui.zoomIndicator.value()))
         
 
 if __name__ == "__main__":
