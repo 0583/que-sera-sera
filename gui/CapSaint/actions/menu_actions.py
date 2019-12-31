@@ -2,6 +2,7 @@
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot, QTimer
+import logging
 
 #############
 # File Menu #
@@ -9,15 +10,15 @@ from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot, QTimer
 
 @pyqtSlot()
 def onMenuImportTapped(self):
-    pass
+    logging.info("Tapped File/Import")
 
 @pyqtSlot()
 def onMenuExportTapped(self):
-    pass
+    logging.info("Tapped File/Export")
 
 @pyqtSlot()
 def onMenuQuitTapped(self):
-    pass
+    logging.info("Tapped File/Quit")
 
 
 #################
@@ -26,7 +27,7 @@ def onMenuQuitTapped(self):
 
 @pyqtSlot()
 def onVerboseTapped(self):
-    pass
+    logging.info("Tapped Advanced/Verbose")
 
 #############
 # Info Menu #
@@ -34,9 +35,9 @@ def onVerboseTapped(self):
 
 @pyqtSlot()
 def onManualMenuTapped(self):
-    pass
+    logging.info("Tapped Info/Manual")
 
 @pyqtSlot()
 def onAboutMenuTapped(self):
-    pass
+    logging.info("Tapped Info/About")
 

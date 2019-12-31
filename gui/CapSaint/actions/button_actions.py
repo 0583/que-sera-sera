@@ -2,27 +2,28 @@
 
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot, QTimer
+import logging
 
 @pyqtSlot()
 def analyzeCurrentTapped(self):
-    pass
+    logging.info("Tapped Analyze Current Button")
 
 @pyqtSlot()
 def analyzeAllTapped(self):
-    pass
+    logging.info("Tapped Analyze All Button")
 
 @pyqtSlot()
 def resetCurrentTapped(self):
-    pass
+    logging.info("Tapped Reset Current Button")
 
 @pyqtSlot()
 def resetAllTapped(self):
-    pass
+    logging.info("Tapped Reset All Button")
 
 @pyqtSlot()
 def previousButtonTapped(self):
-    pass
+    logging.info("Tapped Previous Image Button")
 
 @pyqtSlot()
 def nextButtonTapped(self):
-    pass
+    logging.info("Tapped Next Image Button")
