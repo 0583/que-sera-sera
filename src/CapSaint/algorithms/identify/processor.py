@@ -1,4 +1,5 @@
 from .dhash import DHash
+from .retouch import Retouch
 import os
 from PIL import Image
 from enum import IntEnum
@@ -52,16 +53,24 @@ class Identify:
             score += self.__diff(img_test, img)
         return score / len(img_list)
 
+    def __size_evaluation(self, size):
+        return ((size[0] > 2 * size[1]) | (size[1] > 2 * size[0]))
+
     def judge(self, img_test):
-        avg_score = [0, 0, 0]
-        for i in range(3):
-            avg_score[i] = self.__compare(img_test, self.standard_img_list[i])
-            print(avg_score[i])
-        max_score = max(avg_score)
-        if (max_score > self.threshold):
-            idx = avg_score.index(max_score)
+        img_retouched = Retouch.retouch(img_test)
+        size = img_retouched.shape
+
+        if self.__size_evaluation(size):
+            idx = 2
         else:
-            idx = 3
+            avg_score = [0, 0, 0]
+            for i in range(3):
+                avg_score[i] = self.__compare(Retouch.retouch(img_test),
+                                              self.standard_img_list[i])
+                print(avg_score[i])
+            max_score = max(avg_score[:2])
+            idx = avg_score.index(max_score)
+
         return self.switcher[idx]
 
     def judge_list(self, img_test_list):
