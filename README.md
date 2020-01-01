@@ -7,8 +7,8 @@ SE-342: Computer Vision Group Project Repository.
 root
 └───README.md
 └───LICENSE
-└───sample
-│       containing JPEG formatted files as <size>_<color>_<gesture>.jpg
+└───standard
+│       containing JPEG formatted files as ./<gesture>/<size>_<color>_<gesture>.jpg
 |       carrying different sizes and colors of bottle caps
 │       used for cap detecting as a standard basis.
 └───scenes
