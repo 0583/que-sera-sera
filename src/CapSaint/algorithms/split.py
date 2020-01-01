@@ -1,8 +1,10 @@
 import cv2
 import numpy as np
+from .util import Rect
+import os
 
 
-def cut(image):
+def split(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     _, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV)
     h, w = thresh.shape[0:2]
@@ -15,8 +17,8 @@ def cut(image):
                          cv2.CHAIN_APPROX_NONE)
     cnts, _b = x
     c = sorted(cnts, key=cv2.contourArea, reverse=True)
-    l = []
-    des = []
+    img_list = []
+    rect_list = []
     for k in range(len(c)):
         if cv2.contourArea(c[k]) < 10000:
             break
@@ -30,8 +32,18 @@ def cut(image):
         y2 = max(Ys)
         hight = y2 - y1
         width = x2 - x1
-        cropImg = image[y1:y1+hight, x1:x1+width].copy()
-        l.append(cropImg)
-        des.append([int(y1+hight/2), int(x1+width/2)])
-        cv2.imwrite(str(k)+".jpg", cropImg)
-    return (l, des)
+        cropImg = image[y1:y1 + hight, x1:x1 + width].copy()
+        img_list.append(cropImg)
+        rect_list.append(Rect(y1, x1, hight, width))
+        # l.append(cropImg)
+        # des.append([int(y1 + hight / 2), int(x1 + width / 2)])
+    return img_list, rect_list
+
+
+if __name__ == "__main__":
+    img = cv2.imread('../../../scenes/scene1.jpg')
+    img_list, rect_list = split(img)
+    os.mkdir('scene1')
+    os.chdir('scene1')
+    for i, img in enumerate(img_list):
+        cv2.imwrite("{}.jpg".format(i), img)

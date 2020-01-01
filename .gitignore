@@ -2,6 +2,8 @@
 /tmp/*
 /src/CapSaint/test.py
 /src/retouch.png
+.vscode/*
+scene1/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

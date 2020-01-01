@@ -1,11 +1,12 @@
 import cv2
 import numpy as np
+from .util import Rect
 
 
 class Retouch:
     @staticmethod
     def remove_bg(img):
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
         th, threshed = cv2.threshold(gray, 127, 255,
                                      cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
 
@@ -30,7 +31,7 @@ class Retouch:
         cnt = contours[0]
         x, y, w, h = cv2.boundingRect(cnt)
 
-        return img[y:y + h, x:x + w]
+        return img[y:y + h, x:x + w], Rect(y, x, h, w)
 
     @staticmethod
     def clear_bg(img):
@@ -45,7 +46,7 @@ class Retouch:
     @staticmethod
     def retouch(img):
         img_after = Retouch.remove_bg(img)
-        img_after = Retouch.crop_edge(img_after)
-        img_after = Retouch.clear_bg(img_after)
         cv2.imwrite('retouch.png', img_after)
-        return img_after
+        img_after, rect_local = Retouch.crop_edge(img_after)
+        img_after = Retouch.clear_bg(img_after)
+        return img_after, rect_local

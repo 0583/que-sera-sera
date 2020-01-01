@@ -1,16 +1,9 @@
 from .dhash import DHash
 from .retouch import Retouch
+from .split import split
+from .util import BottleCapType, Tag
 import os
-from PIL import Image
-from enum import IntEnum
 import cv2
-
-
-class BottleCapType(IntEnum):
-    INVALID = 0
-    POS = 1
-    NEG = 2
-    STANDING = 3
 
 
 class Identify:
@@ -54,27 +47,45 @@ class Identify:
         return score / len(img_list)
 
     def __size_evaluation(self, size):
-        return ((size[0] > 2 * size[1]) | (size[1] > 2 * size[0]))
+        return ((size[0] > 1.5 * size[1]) | (size[1] > 1.5 * size[0]))
 
-    def judge(self, img_test):
-        img_retouched = Retouch.retouch(img_test)
+    def __fix_coordinate(self, rect, rect_local):
+        rect.x = rect.x + rect_local.x
+        rect.y = rect.y + rect_local.y
+        rect.w = rect_local.w
+        rect.h = rect_local.h
+        return rect
+
+    def judge(self, img_test, rect):
+        tag = Tag()
+
+        img_retouched, rect_local = Retouch.retouch(img_test)
         size = img_retouched.shape
+        avg_score = [0, 0, 0]
 
+        for i in range(3):
+            avg_score[i] = self.__compare(img_retouched,
+                                          self.standard_img_list[i])
+            print(avg_score[i])
+
+        print(size)
         if self.__size_evaluation(size):
             idx = 2
         else:
-            avg_score = [0, 0, 0]
-            for i in range(3):
-                avg_score[i] = self.__compare(Retouch.retouch(img_test),
-                                              self.standard_img_list[i])
-                print(avg_score[i])
             max_score = max(avg_score[:2])
             idx = avg_score.index(max_score)
 
-        return self.switcher[idx]
+        tag.rect = self.__fix_coordinate(rect, rect_local)
+        tag.type = self.switcher[idx]
+        return tag
 
-    def judge_list(self, img_test_list):
-        type_list = []
-        for img_test in img_test_list:
-            type_list.append(self.judge(img_test))
-        return type_list
+    def judge_list(self, img_test_list, rect_list):
+        tags = []
+        for img_test, rect in zip(img_test_list, rect_list):
+            tag = self.judge(img_test, rect)
+            tags.append(tag)
+        return tags
+
+    def process(self, img_scene):
+        img_list, rect_list = split(img_scene)
+        return self.judge_list(img_list, rect_list)
