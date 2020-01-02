@@ -1,6 +1,12 @@
 # que-será-será
 SE-342: Computer Vision Group Project Repository.
 
+>   CapSaint
+
+---
+
+![CapSaint Running Screenshots](./kanban.png)
+
 ## Repo Structure
 
 ```
