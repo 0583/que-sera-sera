@@ -41,8 +41,12 @@ def analyzeAllTapped(self):
 def resetCurrentTapped(self):
     logging.info("Tapped Reset Current Button")
     if varargs.varargs.currentImageIndex >= 1 and varargs.varargs.currentImageIndex <= baseimage.imagesetter.getCount():
+        wrapper.wrapper.processedImgPointers.remove(
+            baseimage.imagesetter.getImageAt(varargs.varargs.currentImageIndex - 1))
         baseimage.imagesetter.removeImageAt(
             varargs.varargs.currentImageIndex - 1)
+        varargs.varargs.currentImageIndex = min(
+            varargs.varargs.currentImageIndex, baseimage.imagesetter.getCount())
         utils.widget_helper.global_ce.refreshDisplay()
     else:
         logging.error("Failed to remove image #%d, total count = %d" % (
@@ -53,6 +57,7 @@ def resetCurrentTapped(self):
 def resetAllTapped(self):
     logging.info("Tapped Reset All Button")
     baseimage.imagesetter.clearImageObject()
+    wrapper.wrapper.processedImgPointers.clear()
     utils.widget_helper.global_ce.refreshDisplay()
 
 

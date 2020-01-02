@@ -1,5 +1,7 @@
 import PIL
+from PIL import ImageDraw, ImageFont
 import cv2
+import math
 import numpy
 import logging
 import utils.prompt
@@ -12,39 +14,64 @@ def __dirtyWrapper(rec):
     return rec
 
 
-def makeMarking(pil_image, rec):
+__strokeWidthRatio = 225
+__textSizeRatio = 33
+__textMarginRatio = 1.1
+
+
+def makeMarking(pil_image: PIL.Image, rec):
     for tag in rec:
         rect = __dirtyWrapper(tag.rect)
 
         w, h = pil_image.size
-        print("image size = ", w, h)
-        print("gotta rect ", str(tag.rect))
-        w -= 1
-        h -= 1
-        if tag.type == algorithms.BottleCapType.INVALID:
-            # don't draw invalid stuff
-            continue
-        elif tag.type == algorithms.BottleCapType.NEG:
-            color = (255, 255, 0)
-        elif tag.type == algorithms.BottleCapType.POS:
-            color = (0, 255, 255)
-        elif tag.type == algorithms.BottleCapType.STANDING:
-            color = (255, 0, 255)
 
-        for x in range(rect.x, min(rect.x + rect.w, w)):
-            # print("put pixel @", (x, rect.y))
-            pil_image.putpixel((x, min(rect.y, h)), color)
+        __markTextSize = int(math.sqrt(w * h)) // __textSizeRatio
+        __markFont = ImageFont.truetype("./fonts/DIN-Bold.otf", __markTextSize)
 
-            # print("put pixel @", (x, min(rect.y + rect.h, h)))
-            pil_image.putpixel((x, min(rect.y + rect.h, h)), color)
+        strokeWidth = int(math.sqrt(w * h)) // __strokeWidthRatio
 
-        for y in range(rect.y, min(rect.y + rect.h, h)):
-            # print("put pixel @ ", (min(rect.x, w), y))
-            pil_image.putpixel((rect.x, y), color)
-            # print("put pixel @ ", (min(rect.x + rect.w, w), y))
-            pil_image.putpixel((min(rect.x + rect.w, w), y), color)
+        drawer = PIL.ImageDraw.Draw(pil_image)
 
-    print(type(pil_image))
+        if varargs.varargs.useColorToDistinguish == 1:
+            if tag.type == algorithms.BottleCapType.INVALID:
+                # don't draw invalid stuff
+                continue
+            elif tag.type == algorithms.BottleCapType.NEG:
+                color = (255, 255, 0)
+                drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Negative", fill=(155, 155, 0),
+                            font=__markFont, align='left')
+            elif tag.type == algorithms.BottleCapType.POS:
+                color = (0, 255, 255)
+                drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Positive", fill=(0, 155, 155),
+                            font=__markFont, align='left')
+            elif tag.type == algorithms.BottleCapType.STANDING:
+                drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Standing", fill=(155, 0, 155),
+                            font=__markFont, align='left')
+                color = (255, 0, 255)
+        else:
+            color = (127, 127, 127)
+
+        drawer.rectangle([(rect.x, rect.y),
+                          (rect.x + rect.w, rect.y + rect.h)], outline=color, width=strokeWidth)
+
+        # def __drawPixel(x, y, color):
+        #     for ax in range(max(0, x - __halfStrokeWidth), min(x + __halfStrokeWidth, w)):
+        #         for ay in range(max(0, y - __halfStrokeWidth), min(y + __halfStrokeWidth, h)):
+        #             pil_image.putpixel((x, y), color)
+
+        # for x in range(rect.x, rect.x + rect.w):
+        #     # print("put pixel @", (x, rect.y))
+        #     __drawPixel(x, rect.y, color)
+
+        #     # print("put pixel @", (x, min(rect.y + rect.h, h)))
+        #     __drawPixel(x, rect.y + rect.h, color)
+
+        # for y in range(rect.y, rect.y + rect.h):
+        #     # print("put pixel @ ", (min(rect.x, w), y))
+        #     __drawPixel(rect.x, y, color)
+        #     # print("put pixel @ ", (min(rect.x + rect.w, w), y))
+        #     __drawPixel(rect.x + rect.w, y, color)
+
     return pil_image
 
 
