@@ -6,29 +6,54 @@ import logging
 import baseimage.imagesetter
 import varargs.varargs
 import utils.widget_helper
+import utils.prompt
+import wrapper.wrapper
+
 
 @pyqtSlot()
 def analyzeCurrentTapped(self):
     logging.info("Tapped Analyze Current Button")
 
+    if varargs.varargs.currentImageIndex >= 1 and varargs.varargs.currentImageIndex <= baseimage.imagesetter.getCount():
+        originImage = baseimage.imagesetter.getImageAt(
+            varargs.varargs.currentImageIndex - 1)
+
+        if originImage in wrapper.wrapper.processedImgPointers:
+            utils.prompt.showWarning(
+                "Cannot process image since it has been marked before.")
+        image = varargs.varargs.currentImageIndex, wrapper.wrapper.processImage(
+            originImage)
+        baseimage.imagesetter.setImageAt(
+            varargs.varargs.currentImageIndex - 1, image)
+        wrapper.wrapper.processedImgPointers.append(image)
+    else:
+        logging.error("Failed to remove image #%d, total count = %d" % (
+            varargs.varargs.currentImageIndex, baseimage.imagesetter.getCount()))
+
+
 @pyqtSlot()
 def analyzeAllTapped(self):
     logging.info("Tapped Analyze All Button")
+
 
 @pyqtSlot()
 def resetCurrentTapped(self):
     logging.info("Tapped Reset Current Button")
     if varargs.varargs.currentImageIndex >= 1 and varargs.varargs.currentImageIndex <= baseimage.imagesetter.getCount():
-        baseimage.imagesetter.removeImageAt(varargs.varargs.currentImageIndex - 1)
+        baseimage.imagesetter.removeImageAt(
+            varargs.varargs.currentImageIndex - 1)
         utils.widget_helper.global_ce.refreshDisplay()
     else:
-        logging.error("Failed to remove image #%d, total count = %d" % (varargs.varargs.currentImageIndex, baseimage.imagesetter.getCount()))
+        logging.error("Failed to remove image #%d, total count = %d" % (
+            varargs.varargs.currentImageIndex, baseimage.imagesetter.getCount()))
+
 
 @pyqtSlot()
 def resetAllTapped(self):
     logging.info("Tapped Reset All Button")
     baseimage.imagesetter.clearImageObject()
     utils.widget_helper.global_ce.refreshDisplay()
+
 
 @pyqtSlot()
 def previousButtonTapped(self):
@@ -37,7 +62,9 @@ def previousButtonTapped(self):
         varargs.varargs.currentImageIndex -= 1
         utils.widget_helper.global_ce.refreshDisplay()
     else:
-        logging.error("invalid previous button call when current = %d" % varargs.varargs.currentImageIndex)
+        logging.error("invalid previous button call when current = %d" %
+                      varargs.varargs.currentImageIndex)
+
 
 @pyqtSlot()
 def nextButtonTapped(self):
@@ -46,4 +73,5 @@ def nextButtonTapped(self):
         varargs.varargs.currentImageIndex += 1
         utils.widget_helper.global_ce.refreshDisplay()
     else:
-        logging.error("invalid next button call when current = %d" % varargs.varargs.currentImageIndex)
+        logging.error("invalid next button call when current = %d" %
+                      varargs.varargs.currentImageIndex)
