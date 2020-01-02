@@ -14,8 +14,8 @@ class Identify:
     def __init_config(self):
         # path config
         self.path_list = [
-            '../../standard/positive', '../../standard/negative',
-            '../../standard/standing'
+            '../standard/positive', '../standard/negative',
+            '../standard/standing'
         ]
         self.standard_img_list = [[], [], []]
         self.switcher = {
