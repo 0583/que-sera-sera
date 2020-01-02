@@ -21,11 +21,12 @@ def analyzeCurrentTapped(self):
         if originImage in wrapper.wrapper.processedImgPointers:
             utils.prompt.showWarning(
                 "Cannot process image since it has been marked before.")
-        image = varargs.varargs.currentImageIndex, wrapper.wrapper.processImage(
-            originImage)
+            return
+        image = wrapper.wrapper.processImage(originImage)
         baseimage.imagesetter.setImageAt(
             varargs.varargs.currentImageIndex - 1, image)
         wrapper.wrapper.processedImgPointers.append(image)
+        utils.widget_helper.global_ce.refreshDisplay()
     else:
         logging.error("Failed to remove image #%d, total count = %d" % (
             varargs.varargs.currentImageIndex, baseimage.imagesetter.getCount()))

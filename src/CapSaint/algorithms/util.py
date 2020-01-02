@@ -15,6 +15,9 @@ class Rect:
         self.h = hh
         self.w = ww
 
+    def __str__(self):
+        return "xywh = (%d, %d, %d, %d)" % (self.x, self.y, self.w, self.h)
+
 
 class Block:
     def __init__(self):
