@@ -50,6 +50,8 @@ def makeMarking(pil_image: PIL.Image, rec):
                 color = (255, 0, 255)
         else:
             color = (127, 127, 127)
+            drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Standing", fill=(155, 155, 155),
+                        font=__markFont, align='left')
 
         drawer.rectangle([(rect.x, rect.y),
                           (rect.x + rect.w, rect.y + rect.h)], outline=color, width=strokeWidth)
