@@ -42,6 +42,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.graphicsView.sizePolicy().hasHeightForWidth())
         self.graphicsView.setSizePolicy(sizePolicy)
         self.graphicsView.setText("")
+        self.graphicsView.setAlignment(QtCore.Qt.AlignCenter)
         self.graphicsView.setObjectName("graphicsView")
         self.horizontalLayout_5.addWidget(self.graphicsView)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
