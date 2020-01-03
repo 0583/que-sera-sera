@@ -14,7 +14,7 @@ class Retouch:
                                  cv2.CHAIN_APPROX_SIMPLE)[-2]
         cnts = sorted(_cnts, key=cv2.contourArea)
         for cnt in cnts:
-            if cv2.contourArea(cnt) > 1000:
+            if cv2.contourArea(cnt) > 1500:
                 break
 
         mask = np.zeros(img.shape[:2], np.uint8)
@@ -26,8 +26,8 @@ class Retouch:
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         _, thresh = cv2.threshold(gray, 1, 255, cv2.THRESH_BINARY)
-        contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL,
-                                               cv2.CHAIN_APPROX_SIMPLE)
+        _, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_EXTERNAL,
+                                                  cv2.CHAIN_APPROX_SIMPLE)
         cnt = contours[0]
         x, y, w, h = cv2.boundingRect(cnt)
 
@@ -46,7 +46,6 @@ class Retouch:
     @staticmethod
     def retouch(img):
         img_after = Retouch.remove_bg(img)
-        cv2.imwrite('retouch.png', img_after)
         img_after, rect_local = Retouch.crop_edge(img_after)
         img_after = Retouch.clear_bg(img_after)
         return img_after, rect_local

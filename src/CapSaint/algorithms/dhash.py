@@ -45,31 +45,6 @@ class DHash(object):
                 hamming_distance += 1
         return hamming_distance
 
-    # @staticmethod
-    # def __difference(image):
-    #     """
-    #     *Private method*
-    #     计算image的像素差值
-    #     :param image: PIL.Image
-    #     :return: 差值数组。0、1组成
-    #     """
-    #     resize_width = 9
-    #     resize_height = 8
-    #     # 1. resize to (9,8)
-    #     smaller_image = image.resize((resize_width, resize_height))
-    #     # 2. 灰度化 Grayscale
-    #     grayscale_image = smaller_image.convert("L")
-    #     # 3. 比较相邻像素
-    #     pixels = list(grayscale_image.getdata())
-    #     difference = []
-    #     for row in range(resize_height):
-    #         row_start_index = row * resize_width
-    #         for col in range(resize_width - 1):
-    #             left_pixel_index = row_start_index + col
-    #             difference.append(
-    #                 pixels[left_pixel_index] > pixels[left_pixel_index + 1])
-    #     return difference
-
     @staticmethod
     def __difference(image):
         """

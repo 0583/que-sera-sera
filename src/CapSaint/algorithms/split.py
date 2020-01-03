@@ -15,10 +15,12 @@ def split(image):
     h, w = closed.shape[0:2]
     x = cv2.findContours(closed.copy(), cv2.RETR_EXTERNAL,
                          cv2.CHAIN_APPROX_NONE)
-    cnts, _b = x
+    _, cnts, _b = x
     c = sorted(cnts, key=cv2.contourArea, reverse=True)
     img_list = []
     rect_list = []
+    # display
+    imgs = []
     for k in range(len(c)):
         if cv2.contourArea(c[k]) < 10000:
             break
@@ -35,15 +37,11 @@ def split(image):
         cropImg = image[y1:y1 + hight, x1:x1 + width].copy()
         img_list.append(cropImg)
         rect_list.append(Rect(y1, x1, hight, width))
-        # l.append(cropImg)
-        # des.append([int(y1 + hight / 2), int(x1 + width / 2)])
+        # display
+        imgs.append(cropImg)
+    cwd = os.getcwd()
+    os.chdir('../../result/spilt')
+    for idx, img in enumerate(imgs):
+        cv2.imwrite("{}.jpg".format(idx), img)
+    os.chdir(cwd)
     return img_list, rect_list
-
-
-if __name__ == "__main__":
-    img = cv2.imread('../../../scenes/scene1.jpg')
-    img_list, rect_list = split(img)
-    os.mkdir('scene1')
-    os.chdir('scene1')
-    for i, img in enumerate(img_list):
-        cv2.imwrite("{}.jpg".format(i), img)

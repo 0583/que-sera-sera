@@ -1,9 +1,10 @@
 # algortihm test
-/tmp/*
 /src/CapSaint/test.py
 /src/retouch.png
 .vscode/*
-scene1/*
+result/*
+sift_match.py
+res.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
