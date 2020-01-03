@@ -21,7 +21,7 @@ DEBUG = False
 
 global_ui = None
 
-os.chdir(os.path.dirname(sys.argv[0]))
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 
 class CapSaintGui(QtWidgets.QMainWindow):
