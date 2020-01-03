@@ -35,6 +35,7 @@ def analyzeCurrentTapped(self):
 @pyqtSlot()
 def analyzeAllTapped(self):
     logging.info("Tapped Analyze All Button")
+    utils.prompt.showWarning("Analyzing all might be very low.")
 
 
 @pyqtSlot()
