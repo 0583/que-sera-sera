@@ -1,4 +1,5 @@
 # This Python file uses the following encoding: utf-8
+import os
 import sys
 import logging
 import mainwindow
@@ -19,6 +20,8 @@ from PyQt5 import QtWidgets
 DEBUG = False
 
 global_ui = None
+
+os.chdir(os.path.dirname(sys.argv[0]))
 
 
 class CapSaintGui(QtWidgets.QMainWindow):
