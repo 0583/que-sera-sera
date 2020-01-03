@@ -32,14 +32,17 @@ class Ui_MainWindow(object):
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
         self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 318, 313))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
-        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.scrollAreaWidgetContents)
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(
+            self.scrollAreaWidgetContents)
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.graphicsView = QtWidgets.QLabel(self.scrollAreaWidgetContents)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.graphicsView.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.graphicsView.sizePolicy().hasHeightForWidth())
         self.graphicsView.setSizePolicy(sizePolicy)
         self.graphicsView.setText("")
         self.graphicsView.setAlignment(QtCore.Qt.AlignCenter)
@@ -59,7 +62,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.label = QtWidgets.QLabel(self.groupBox_2)
-        self.label.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label.setAlignment(
+            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.label.setObjectName("label")
         self.horizontalLayout_2.addWidget(self.label)
         self.zoomIndicator = QtWidgets.QDoubleSpinBox(self.groupBox_2)
@@ -67,7 +71,8 @@ class Ui_MainWindow(object):
         self.zoomIndicator.setMinimum(0.1)
         self.zoomIndicator.setMaximum(10.0)
         self.zoomIndicator.setSingleStep(0.1)
-        self.zoomIndicator.setStepType(QtWidgets.QAbstractSpinBox.DefaultStepType)
+        self.zoomIndicator.setStepType(
+            QtWidgets.QAbstractSpinBox.DefaultStepType)
         self.zoomIndicator.setProperty("value", 1.0)
         self.zoomIndicator.setObjectName("zoomIndicator")
         self.horizontalLayout_2.addWidget(self.zoomIndicator)
@@ -78,7 +83,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.label_2 = QtWidgets.QLabel(self.groupBox_2)
-        self.label_2.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTrailing|QtCore.Qt.AlignVCenter)
+        self.label_2.setAlignment(
+            QtCore.Qt.AlignRight | QtCore.Qt.AlignTrailing | QtCore.Qt.AlignVCenter)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_3.addWidget(self.label_2)
         self.sensitivitySelector = QtWidgets.QComboBox(self.groupBox_2)
@@ -92,10 +98,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.addLayout(self.verticalLayout)
         self.verticalLayout_3.addWidget(self.groupBox_2)
         self.groupBox_3 = QtWidgets.QGroupBox(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.groupBox_3.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.groupBox_3.sizePolicy().hasHeightForWidth())
         self.groupBox_3.setSizePolicy(sizePolicy)
         self.groupBox_3.setObjectName("groupBox_3")
         self.gridLayout = QtWidgets.QGridLayout(self.groupBox_3)
@@ -120,10 +128,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout_9 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_9.setObjectName("horizontalLayout_9")
         self.previousButton = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.previousButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.previousButton.sizePolicy().hasHeightForWidth())
         self.previousButton.setSizePolicy(sizePolicy)
         self.previousButton.setObjectName("previousButton")
         self.horizontalLayout_9.addWidget(self.previousButton)
@@ -141,10 +151,12 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.pageProgressBar)
         self.horizontalLayout_9.addLayout(self.verticalLayout_4)
         self.nextButton = QtWidgets.QPushButton(self.centralwidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.nextButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.nextButton.sizePolicy().hasHeightForWidth())
         self.nextButton.setSizePolicy(sizePolicy)
         self.nextButton.setObjectName("nextButton")
         self.horizontalLayout_9.addWidget(self.nextButton)
@@ -214,22 +226,28 @@ class Ui_MainWindow(object):
         self.groupBox.setTitle(_translate("MainWindow", "Preview"))
         self.groupBox_2.setTitle(_translate("MainWindow", "Preferences"))
         self.label.setText(_translate("MainWindow", "Zoom Ratio:"))
-        self.colorDistCheckBox.setText(_translate("MainWindow", "Use Color to Distinguish"))
+        self.colorDistCheckBox.setText(_translate(
+            "MainWindow", "Use Color to Distinguish"))
         self.label_2.setText(_translate("MainWindow", "Sensitivity:"))
-        self.sensitivitySelector.setItemText(0, _translate("MainWindow", "Low"))
-        self.sensitivitySelector.setItemText(1, _translate("MainWindow", "Medium"))
-        self.sensitivitySelector.setItemText(2, _translate("MainWindow", "High"))
-        self.sensitivitySelector.setItemText(3, _translate("MainWindow", "Extremely High"))
+        self.sensitivitySelector.setItemText(
+            0, _translate("MainWindow", "Low"))
+        self.sensitivitySelector.setItemText(
+            1, _translate("MainWindow", "Medium"))
+        self.sensitivitySelector.setItemText(
+            2, _translate("MainWindow", "High"))
+        self.sensitivitySelector.setItemText(
+            3, _translate("MainWindow", "Extremely High"))
         self.groupBox_3.setTitle(_translate("MainWindow", "Actions"))
-        self.analyzeThisButton.setText(_translate("MainWindow", "Analyze This"))
+        self.analyzeThisButton.setText(
+            _translate("MainWindow", "Analyze This"))
         self.analyzeThisButton.setShortcut(_translate("MainWindow", "Return"))
         self.analyzeAllButton.setText(_translate("MainWindow", "Analyze All"))
         self.resetThisButton.setText(_translate("MainWindow", "Remove This"))
         self.resetAllButton.setText(_translate("MainWindow", "Remove All"))
-        self.previousButton.setText(_translate("MainWindow", "⬅️"))
+        self.previousButton.setText(_translate("MainWindow", "←"))
         self.previousButton.setShortcut(_translate("MainWindow", "Left"))
         self.pageIndicatorLabel.setText(_translate("MainWindow", "10 of 43"))
-        self.nextButton.setText(_translate("MainWindow", "➡️"))
+        self.nextButton.setText(_translate("MainWindow", "→"))
         self.nextButton.setShortcut(_translate("MainWindow", "Right"))
         self.FileMenu.setTitle(_translate("MainWindow", "File"))
         self.InfoMenu.setTitle(_translate("MainWindow", "Info"))
@@ -239,15 +257,18 @@ class Ui_MainWindow(object):
         self.actionAbout.setShortcut(_translate("MainWindow", "Ctrl+/"))
         self.actionImport.setText(_translate("MainWindow", "Import Images..."))
         self.actionImport.setShortcut(_translate("MainWindow", "Ctrl+O"))
-        self.actionExport.setText(_translate("MainWindow", "Export Current..."))
+        self.actionExport.setText(_translate(
+            "MainWindow", "Export Current..."))
         self.actionExport.setShortcut(_translate("MainWindow", "Ctrl+S"))
         self.actionQuit.setText(_translate("MainWindow", "Quit"))
         self.actionQuit.setShortcut(_translate("MainWindow", "Ctrl+Q"))
         self.actionLow.setText(_translate("MainWindow", "Low"))
         self.actionMedium.setText(_translate("MainWindow", "Medium"))
         self.actionHigh.setText(_translate("MainWindow", "High"))
-        self.actionDistinguishByColor.setText(_translate("MainWindow", "Use Color to Distinguish"))
-        self.actionStart_Analyze.setText(_translate("MainWindow", "Start Analyze"))
+        self.actionDistinguishByColor.setText(
+            _translate("MainWindow", "Use Color to Distinguish"))
+        self.actionStart_Analyze.setText(
+            _translate("MainWindow", "Start Analyze"))
         self.actionRest.setText(_translate("MainWindow", "Rest"))
         self.actionVerbose.setText(_translate("MainWindow", "Verbose Mode"))
 
