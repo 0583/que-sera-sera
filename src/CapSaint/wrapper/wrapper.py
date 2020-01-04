@@ -23,6 +23,21 @@ def makeMarking(pil_image: PIL.Image, rec):
     for tag in rec:
         rect = __dirtyWrapper(tag.rect)
 
+        if varargs.varargs.useColorToDistinguish:
+
+            r, g, b = tag.color[0], tag.color[1], tag.color[2]
+            dim_r, dim_g, dim_b = math.sqrt(
+                r) * 10, math.sqrt(g) * 10, math.sqrt(b) * 10
+
+            color = (int(r), int(g), int(b))
+            dim_color = (int(dim_r), int(dim_g), int(dim_b))
+
+            # print(color)
+            # print(dim_color)
+        else:
+            color = (127, 127, 127)
+            dim_color = (97, 97, 97)
+
         w, h = pil_image.size
 
         __markTextSize = int(math.sqrt(w * h)) // __textSizeRatio
@@ -32,25 +47,17 @@ def makeMarking(pil_image: PIL.Image, rec):
 
         drawer = PIL.ImageDraw.Draw(pil_image)
 
-        if varargs.varargs.useColorToDistinguish == 1:
-            if tag.type == algorithms.BottleCapType.INVALID:
-                # don't draw invalid stuff
-                continue
-            elif tag.type == algorithms.BottleCapType.NEG:
-                color = (255, 255, 0)
-                drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Negative", fill=(155, 155, 0),
-                            font=__markFont, align='left')
-            elif tag.type == algorithms.BottleCapType.POS:
-                color = (0, 255, 255)
-                drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Positive", fill=(0, 155, 155),
-                            font=__markFont, align='left')
-            elif tag.type == algorithms.BottleCapType.STANDING:
-                drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Standing", fill=(155, 0, 155),
-                            font=__markFont, align='left')
-                color = (255, 0, 255)
-        else:
-            color = (127, 127, 127)
-            drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Standing", fill=(155, 155, 155),
+        if tag.type == algorithms.BottleCapType.INVALID:
+            # don't draw invalid stuff
+            continue
+        elif tag.type == algorithms.BottleCapType.NEG:
+            drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Negative", fill=dim_color,
+                        font=__markFont, align='left')
+        elif tag.type == algorithms.BottleCapType.POS:
+            drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Positive", fill=dim_color,
+                        font=__markFont, align='left')
+        elif tag.type == algorithms.BottleCapType.STANDING:
+            drawer.text((rect.x, rect.y - __markTextSize * __textMarginRatio), "Standing", fill=dim_color,
                         font=__markFont, align='left')
 
         drawer.rectangle([(rect.x, rect.y),
