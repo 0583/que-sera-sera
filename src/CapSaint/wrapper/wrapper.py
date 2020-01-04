@@ -25,7 +25,7 @@ def makeMarking(pil_image: PIL.Image, rec):
 
         if varargs.varargs.useColorToDistinguish:
 
-            r, g, b = tag.color[0], tag.color[1], tag.color[2]
+            b, g, r = tag.color[0], tag.color[1], tag.color[2]
             dim_r, dim_g, dim_b = math.sqrt(
                 r) * 10, math.sqrt(g) * 10, math.sqrt(b) * 10
 
