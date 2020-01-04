@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 from .util import Rect
-import os
 
 
 def split(image):
@@ -19,8 +18,6 @@ def split(image):
     c = sorted(cnts, key=cv2.contourArea, reverse=True)
     img_list = []
     rect_list = []
-    # display
-    imgs = []
     for k in range(len(c)):
         if cv2.contourArea(c[k]) < 10000:
             break
@@ -37,11 +34,4 @@ def split(image):
         cropImg = image[y1:y1 + hight, x1:x1 + width].copy()
         img_list.append(cropImg)
         rect_list.append(Rect(y1, x1, hight, width))
-        # display
-        imgs.append(cropImg)
-    cwd = os.getcwd()
-    os.chdir('../../result/spilt')
-    for idx, img in enumerate(imgs):
-        cv2.imwrite("{}.jpg".format(idx), img)
-    os.chdir(cwd)
     return img_list, rect_list

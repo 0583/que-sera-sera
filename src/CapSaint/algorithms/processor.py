@@ -42,25 +42,31 @@ class Identify:
         rect.h = rect_local.h
         return rect
 
+    def __center_rbg(self, img):
+        x = int(len(img) / 2)
+        y = int(len(img[0]) / 2)
+        return img[x][y]
+
     def __balance_determine(self, coord_list1, coord_list2, size):
         arg = 0.85
 
-        most_cnts = Counter(coord_list2).most_common(1)
-        if (most_cnts[0][1] > len(coord_list2) / 2):
-            return 0
+        counter = Counter(coord_list2).most_common(3)
+        coords_commmon = []
+        cnts_common = 0
+        for i in range(3):
+            coords_commmon.append(counter[i][0])
+            cnts_common = cnts_common + counter[i][1]
 
-        print(len(coord_list1))
-        print(len(coord_list2))
         for idx in range(2):
             cnt = 0
-            for coord in coord_list1:
-                if (coord[idx] > size[idx] / 2):
+            for coord1, coord2 in zip(coord_list1, coord_list2):
+                if (coord2 in coords_commmon):
+                    continue
+                if (coord1[idx] > size[idx] / 2):
                     cnt = cnt + 1
-            print(cnt)
-            if ((cnt > len(coord_list1) * arg) | (cnt < len(coord_list1) *
-                                                  (1 - arg))):
+            length = len(coord_list1) - cnts_common
+            if ((cnt > length * arg) | (cnt < length * (1 - arg))):
                 return 0
-        print("balance")
         return 1
 
     def __match_determine(self, img):
@@ -75,8 +81,7 @@ class Identify:
 
         if (len(coord_list1) < 10):
             cap_type = 1
-
-        if not self.__balance_determine(coord_list1, coord_list2, img.shape):
+        elif not self.__balance_determine(coord_list1, coord_list2, img.shape):
             cap_type = 1
 
         return cap_type
@@ -85,6 +90,7 @@ class Identify:
         tag = Tag()
 
         img_retouched, rect_local = Retouch.retouch(img_test)
+        rgb = self.__center_rbg(img_retouched)
         size = img_retouched.shape
 
         if self.__size_evaluation(size):
@@ -94,22 +100,14 @@ class Identify:
 
         tag.rect = self.__fix_coordinate(rect, rect_local)
         tag.type = self.switcher[idx]
-        print(tag.type)
-        return tag, img_retouched
+        tag.color = rgb
+        return tag
 
     def judge_list(self, img_test_list, rect_list):
         tags = []
-        imgs = []
         for img_test, rect in zip(img_test_list, rect_list):
-            tag, img = self.judge(img_test, rect)
+            tag = self.judge(img_test, rect)
             tags.append(tag)
-            imgs.append(img)
-        # display
-        cwd = os.getcwd()
-        os.chdir('../../result/retouched')
-        for idx, img in enumerate(imgs):
-            cv2.imwrite("{}.png".format(idx), img)
-        os.chdir(cwd)
         return tags
 
     def process(self, img_scene):

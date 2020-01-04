@@ -28,5 +28,5 @@ class Block:
 class Tag:
     def __init__(self):
         self.rect = None
-        self.color = None
+        self.color = []
         self.type = None
