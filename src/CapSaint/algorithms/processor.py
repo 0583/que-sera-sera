@@ -2,6 +2,7 @@ from .retouch import Retouch
 from .split import split
 from .util import BottleCapType, Tag
 from .match import match
+from .filter import filter_interference
 import os
 import cv2
 from collections import Counter
@@ -14,8 +15,10 @@ class Identify:
 
     def __init_config(self):
         # path config
-        self.path = '../../standard'
-        self.standard_img_list = []
+        self.filter_path = '../../standard/filter'
+        self.feature_path = '../../standard/feature'
+        self.filter_img_list = []
+        self.feature_img_list = []
         self.switcher = {
             0: BottleCapType.POS,
             1: BottleCapType.NEG,
@@ -26,10 +29,16 @@ class Identify:
 
     def __init_load(self):
         owd = os.getcwd()
-        filename_list = os.listdir(self.path)
-        os.chdir(self.path)
+        filename_list = os.listdir(self.filter_path)
+        os.chdir(self.filter_path)
         for filename in filename_list:
-            self.standard_img_list.append(cv2.imread(filename))
+            self.filter_img_list.append(cv2.imread(filename))
+        os.chdir(owd)
+
+        filename_list = os.listdir(self.feature_path)
+        os.chdir(self.feature_path)
+        for filename in filename_list:
+            self.feature_img_list.append(cv2.imread(filename))
         os.chdir(owd)
 
     def __size_evaluation(self, size):
@@ -73,7 +82,7 @@ class Identify:
         cap_type = 0
         coord_list1 = []
         coord_list2 = []
-        for standard_img in self.standard_img_list:
+        for standard_img in self.feature_img_list:
             coord_list1_tmp, coord_list2_tmp = match(img, standard_img)
             if (len(coord_list1_tmp) > len(coord_list1)):
                 coord_list1 = coord_list1_tmp
@@ -86,10 +95,21 @@ class Identify:
 
         return cap_type
 
+    def __filter_detemine(self, img):
+        max_val = 0
+        for filter_img in self.filter_img_list:
+            tmp_val = filter_interference(img, filter_img)
+            if (tmp_val > max_val):
+                max_val = tmp_val
+        print(max_val)
+        return max_val > 0.6
+
     def judge(self, img_test, rect):
         tag = Tag()
 
         img_retouched, rect_local = Retouch.retouch(img_test)
+        # if not self.__filter_detemine(img_retouched):
+        #     return None
         rgb = self.__center_rbg(img_retouched)
         size = img_retouched.shape
 
@@ -107,7 +127,8 @@ class Identify:
         tags = []
         for img_test, rect in zip(img_test_list, rect_list):
             tag = self.judge(img_test, rect)
-            tags.append(tag)
+            if tag:
+                tags.append(tag)
         return tags
 
     def process(self, img_scene):
