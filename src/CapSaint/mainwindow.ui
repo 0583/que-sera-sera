@@ -63,6 +63,9 @@
                  <property name="text">
                   <string/>
                  </property>
+                 <property name="alignment">
+                  <set>Qt::AlignCenter</set>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -235,7 +238,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>⬅️</string>
+           <string>←</string>
           </property>
           <property name="shortcut">
            <string>Left</string>
@@ -278,7 +281,7 @@
            </sizepolicy>
           </property>
           <property name="text">
-           <string>➡️</string>
+           <string>→</string>
           </property>
           <property name="shortcut">
            <string>Right</string>

@@ -1,3 +1,11 @@
+# algortihm test
+/src/CapSaint/test.py
+/src/retouch.png
+.vscode/*
+result/*
+sift_match.py
+res.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -128,3 +136,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 .DS_Store
+src/CapSaint/retouch.png

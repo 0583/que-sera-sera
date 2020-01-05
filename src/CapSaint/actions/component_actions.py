@@ -6,16 +6,21 @@ import logging
 import varargs.varargs
 import utils.widget_helper
 
+
 @pyqtSlot()
 def onZoomRatioChanged(value):
     logging.info("Tapped Image Zoom, current value: %.1f" % value)
     varargs.varargs.zoomRatio = max(0.1, min(value, 10.0))
     utils.widget_helper.global_ce.refreshDisplay()
 
+
 @pyqtSlot()
 def onColorDistinguishChecked(checked):
     logging.info("Tapped Color Distinguish Checker. value: %d" % checked)
+    varargs.varargs.useColorToDistinguish = checked
+
 
 @pyqtSlot()
 def onSensitivityChanged(level):
     logging.info("Tapped Sensitivity Selector, level: %d" % level)
+    varargs.varargs.sensitivityLevel = level
